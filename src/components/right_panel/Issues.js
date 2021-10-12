@@ -5,14 +5,14 @@ const Issues = () => {
   return (
     <div className="issue">
       <h6 className="issue-title">Issue Title</h6>
-      <div class="issue-desc">
+      <div className="issue-desc">
         {/* <image
           src="https://cdn-icons-png.flaticon.com/512/21/21104.png"
           alt="User Photo"
-          class="issue-desc__photo"
+          className="issue-desc__photo"
         /> */}
         <div className="issue-desc__photo"></div>
-        <p class="issue-desc__description">Jonas</p>
+        <p className="issue-desc__description">Jonas</p>
       </div>
     </div>
   );

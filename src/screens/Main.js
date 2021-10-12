@@ -1,17 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import Header from "../components/Header";
+import Sidebar from "../components/left_panel/Sidebar";
 import CircularButton from "../components/CircularButton";
 import TabsPanel from "../components/right_panel/TabsPanel";
 import Modal from "react-bootstrap/Modal";
 import AddRepositoryForm from "../components/AddRepositoryForm";
 
 const Main = () => {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [repos, setRepo] = useState([]);
+  const [selectedRepo, setSelectedRepo] = useState({});
+
+  const addRepo = (repo) => {
+    console.log(repo);
+    // const copyRepos = [...repos];
+    // copyRepos.push(repo);
+    setRepo([...repos, repo]);
+  };
+
+  const selectRepo = (name, owner) => {
+    console.log("selectRepo called");
+    setSelectedRepo({ name: name, owner: owner });
+  };
 
   return (
     <div>
-      <TabsPanel />
+      <Header title="GITHUB BROWSER" />
+      <Sidebar repos={repos} selectRepo={selectRepo} />
+      <TabsPanel selectedRepo={selectedRepo} />
       <CircularButton onPress={setModalShow} />
-      <AddRepositoryModal show={modalShow} onHide={() => setModalShow(false)} />
+      <AddRepositoryModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        addRepo={addRepo}
+      />
     </div>
   );
 };
@@ -30,7 +52,7 @@ function AddRepositoryModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <AddRepositoryForm />
+        <AddRepositoryForm addRepo={props.addRepo} />
       </Modal.Body>
     </Modal>
   );
