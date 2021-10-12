@@ -1,0 +1,17 @@
+.btn-round {
+  border: none;
+  height: 60px;
+  width: 60px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  background-color: bisque;
+}
+
+.btn-round__content {
+  text-align: center;
+  font-size: 25px;
+}

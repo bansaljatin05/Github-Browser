@@ -1,0 +1,14 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #2998ff;
+  z-index: 10;
+}
+
+.header__title {
+  font-weight: 700;
+  color: #f7f7f7;
+  font-size: 25px;
+  text-align: center;
+}
