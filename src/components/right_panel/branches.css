@@ -1,4 +1,8 @@
 .branch-item {
   padding: 5px;
   border-bottom: 1px solid black;
+  text-decoration: none;
+  display: block;
+  color: gray;
+  margin: 5px;
 }

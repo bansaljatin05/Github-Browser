@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./branches.css";
 
-const Branches = ({ name }) => {
+const Branches = ({ branch, owner, name }) => {
   return (
-    <div className="branch-item">
-      <p>{name}</p>
-    </div>
+    <Link to={`/commits/${branch}`} className="branch-item">
+      {branch}
+    </Link>
   );
 };
 

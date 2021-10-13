@@ -1,0 +1,19 @@
+.commits-container {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  width: 45%;
+  transform: translateX(-50%);
+  height: 85vh;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+  overflow: auto;
+}
+
+.centre-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+}

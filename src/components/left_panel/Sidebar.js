@@ -1,7 +1,7 @@
 import React from "react";
 import "./sidebar.css";
 
-const Sidebar = ({ repos, selectRepo }) => {
+const Sidebar = ({ repos, selectRepo, selectedRepo }) => {
   return (
     <div className="sidebar">
       {repos.length ? (
@@ -12,6 +12,7 @@ const Sidebar = ({ repos, selectRepo }) => {
             description={repo.description}
             owner={repo.owner.login}
             selectRepo={selectRepo}
+            selectedRepo={selectedRepo}
           />
         ))
       ) : (
@@ -23,10 +24,10 @@ const Sidebar = ({ repos, selectRepo }) => {
   );
 };
 
-const SideItem = ({ name, description, owner, selectRepo }) => {
+const SideItem = ({ name, description, owner, selectRepo, selectedRepo }) => {
   return (
     <div
-      className="sidebar-item"
+      className={`sidebar-item ${selectedRepo.name === name ? "selected" : ""}`}
       onClick={() => {
         // console.log("hello");
         selectRepo(name, owner);

@@ -4,8 +4,9 @@ import Tab from "react-bootstrap/Tab";
 import Issue from "./Issues";
 import Branch from "./Branch";
 import "./tabspanel.css";
+import Button from "react-bootstrap/Button";
 
-const TabsPanel = ({ selectedRepo }) => {
+const TabsPanel = ({ selectedRepo, deleteRepo }) => {
   const [key, setKey] = useState("branches");
   const [branches, setBranches] = useState([]);
   const [issues, setIssues] = useState([]);
@@ -32,11 +33,23 @@ const TabsPanel = ({ selectedRepo }) => {
   }, [selectedRepo.owner, selectedRepo.name]);
   return (
     <div className="tabs">
+      {selectedRepo.owner && selectedRepo.name ? (
+        <div className="myBtn">
+          <Button onClick={() => deleteRepo(selectedRepo)}>DELETE</Button>
+        </div>
+      ) : (
+        <div></div>
+      )}
       <Tabs id="tab-panel" activeKey={key} onSelect={(k) => setKey(k)}>
         <Tab eventKey="branches" title="Branches">
           {branches.length ? (
             branches.map((branch) => (
-              <Branch key={branch.id} name={branch.name} />
+              <Branch
+                key={branch.id}
+                branch={branch.name}
+                owner={selectedRepo.owner}
+                name={selectedRepo.name}
+              />
             ))
           ) : (
             <div className="centre-div">

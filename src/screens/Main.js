@@ -6,33 +6,17 @@ import TabsPanel from "../components/right_panel/TabsPanel";
 import Modal from "react-bootstrap/Modal";
 import AddRepositoryForm from "../components/AddRepositoryForm";
 
-const Main = () => {
+const Main = ({ selectedRepo, repos, addRepo, selectRepo, deleteRepo }) => {
   const [modalShow, setModalShow] = useState(false);
-  const [repos, setRepo] = useState([]);
-  const [selectedRepo, setSelectedRepo] = useState({});
-
-  const addRepo = (repo) => {
-    if (
-      !repos.find(
-        (rep) => rep.name === repo.name && rep.description === repo.description
-      )
-    )
-      setRepo([...repos, repo]);
-    else {
-      alert("Repository already added!!");
-    }
-  };
-
-  const selectRepo = (name, owner) => {
-    console.log("selectRepo called");
-    setSelectedRepo({ name: name, owner: owner });
-  };
-
   return (
     <div>
       <Header title="GITHUB BROWSER" />
-      <Sidebar repos={repos} selectRepo={selectRepo} />
-      <TabsPanel selectedRepo={selectedRepo} />
+      <Sidebar
+        repos={repos}
+        selectRepo={selectRepo}
+        selectedRepo={selectedRepo}
+      />
+      <TabsPanel selectedRepo={selectedRepo} deleteRepo={deleteRepo} />
       <CircularButton onPress={setModalShow} />
       <AddRepositoryModal
         show={modalShow}
