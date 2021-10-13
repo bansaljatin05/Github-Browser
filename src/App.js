@@ -11,7 +11,10 @@ function App() {
   const [selectedRepo, setSelectedRepo] = useState({});
 
   const addRepo = (repo) => {
-    if (!repos.find((rep) => rep.name === repo.name)) setRepo([...repos, repo]);
+    if (
+      !repos.find((rep) => rep.name === repo.name && repo.owner === rep.owner)
+    )
+      setRepo([...repos, repo]);
     else {
       alert("Repository already added!!");
     }
@@ -19,7 +22,11 @@ function App() {
   };
 
   const deleteRepo = (repo) => {
-    const newRepos = repos.filter((rep) => rep.name !== repo.name);
+    console.log(repo);
+    console.log(repos);
+    const newRepos = repos.filter(
+      (rep) => rep.name !== repo.name && repo.owner !== rep.owner
+    );
     setRepo([...newRepos]);
     setSelectedRepo({});
   };

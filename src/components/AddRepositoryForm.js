@@ -25,7 +25,8 @@ const AddRepositoryForm = ({ addRepo, onHide }) => {
       `https://api.github.com/repos/${initialState.owner}/${initialState.repoName}`
     );
     if (response.ok) {
-      addRepo(await response.json());
+      const rep = await response.json();
+      addRepo(rep);
       onHide(false);
     } else {
       alert("Repository not found!, Check your credentials.");
