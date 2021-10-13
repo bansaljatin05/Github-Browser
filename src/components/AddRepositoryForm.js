@@ -21,19 +21,15 @@ const AddRepositoryForm = ({ addRepo, onHide }) => {
 
   const fetchRepos = async (event) => {
     event.preventDefault();
-    fetch(
-      `https://api.github.com/repos/${initialState.owner}/${initialState.repoName}`,
-      {
-        headers: {
-          accept: "application/vnd.github.v3+json",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        addRepo(data);
-        onHide(false);
-      });
+    const response = await fetch(
+      `https://api.github.com/repos/${initialState.owner}/${initialState.repoName}`
+    );
+    if (response.ok) {
+      addRepo(await response.json());
+      onHide(false);
+    } else {
+      alert("Repository not found!, Check your credentials.");
+    }
   };
 
   return (

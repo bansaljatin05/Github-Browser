@@ -11,9 +11,13 @@ const Commits = ({ owner, name, branch }) => {
       const response = await fetch(
         `https://api.github.com/repos/${owner}/${name}/commits?sha=${branch}`
       );
-      const _commits = await response.json();
-      console.log(_commits);
-      setCommits([..._commits]);
+
+      if (response.ok) {
+        const _commits = await response.json();
+        setCommits([..._commits]);
+      } else {
+        alert("An error occured");
+      }
     }
 
     fetchData();

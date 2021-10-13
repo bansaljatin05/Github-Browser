@@ -17,15 +17,18 @@ const TabsPanel = ({ selectedRepo, deleteRepo }) => {
         const response = await fetch(
           `https://api.github.com/repos/${selectedRepo.owner}/${selectedRepo.name}/branches`
         );
-
         const _branches = await response.json();
         const response2 = await fetch(
           `https://api.github.com/repos/${selectedRepo.owner}/${selectedRepo.name}/issues`
         );
         const _issues = await response2.json();
-        console.log(_branches);
-        setBranches([..._branches]);
-        setIssues([..._issues]);
+        console.log(response);
+        if (response.ok && response2.ok) {
+          setBranches([..._branches]);
+          setIssues([..._issues]);
+        } else {
+          alert("An error occured, enter the correct data");
+        }
       }
 
       fetchData();
