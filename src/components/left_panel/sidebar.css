@@ -1,7 +1,7 @@
 .sidebar {
   position: fixed;
   width: 33.3333%;
-  height: 100%;
+  min-height: 95vh;
   top: 38px;
   left: 0;
   background-color: #f7f7f7;
@@ -17,7 +17,7 @@
 
 .sidebar-item:hover {
   background-color: aqua;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .sidebar-item__name {
@@ -27,4 +27,12 @@
 .sidebar-item__description {
   margin: 0;
   font-size: 14px;
+}
+
+.centre-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
 }

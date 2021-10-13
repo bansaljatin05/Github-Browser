@@ -1,21 +1,21 @@
 import React from "react";
 import "./Issues.css";
 
-const Issues = () => {
+const Issue = ({ title, user }) => {
   return (
     <div className="issue">
-      <h6 className="issue-title">Issue Title</h6>
+      <h6 className="issue-title">{title}</h6>
       <div className="issue-desc">
-        {/* <image
-          src="https://cdn-icons-png.flaticon.com/512/21/21104.png"
-          alt="User Photo"
+        <input
           className="issue-desc__photo"
-        /> */}
-        <div className="issue-desc__photo"></div>
-        <p className="issue-desc__description">Jonas</p>
+          type="image"
+          src={user.avatar_url}
+          alt="photo"
+        />
+        <p className="issue-desc__description">{user.login}</p>
       </div>
     </div>
   );
 };
 
-export default Issues;
+export default Issue;

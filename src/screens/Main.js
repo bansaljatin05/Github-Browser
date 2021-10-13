@@ -12,10 +12,15 @@ const Main = () => {
   const [selectedRepo, setSelectedRepo] = useState({});
 
   const addRepo = (repo) => {
-    console.log(repo);
-    // const copyRepos = [...repos];
-    // copyRepos.push(repo);
-    setRepo([...repos, repo]);
+    if (
+      !repos.find(
+        (rep) => rep.name === repo.name && rep.description === repo.description
+      )
+    )
+      setRepo([...repos, repo]);
+    else {
+      alert("Repository already added!!");
+    }
   };
 
   const selectRepo = (name, owner) => {
@@ -31,7 +36,7 @@ const Main = () => {
       <CircularButton onPress={setModalShow} />
       <AddRepositoryModal
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        onHide={setModalShow}
         addRepo={addRepo}
       />
     </div>
@@ -52,7 +57,7 @@ function AddRepositoryModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <AddRepositoryForm addRepo={props.addRepo} />
+        <AddRepositoryForm addRepo={props.addRepo} onHide={props.onHide} />
       </Modal.Body>
     </Modal>
   );

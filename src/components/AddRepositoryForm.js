@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import "./addRepositoryForm.css";
 
-const AddRepositoryForm = ({ addRepo }) => {
+const AddRepositoryForm = ({ addRepo, onHide }) => {
   const [initialState, setState] = useState({
     repoName: "",
     owner: "",
@@ -23,7 +23,6 @@ const AddRepositoryForm = ({ addRepo }) => {
     event.preventDefault();
     fetch(
       `https://api.github.com/repos/${initialState.owner}/${initialState.repoName}`,
-      // `https://api.github.com/repos/${initialState.owner}/${initialState.repoName}/branches`,
       {
         headers: {
           accept: "application/vnd.github.v3+json",
@@ -32,12 +31,8 @@ const AddRepositoryForm = ({ addRepo }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        // let repo = {
-        //   name: data.name,
-        //   description: data.description,
-        // };
-        // console.log(data);
         addRepo(data);
+        onHide(false);
       });
   };
 

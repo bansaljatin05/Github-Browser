@@ -3,4 +3,12 @@
   left: 33.333%;
   width: 66%;
   top: 38px;
+  min-height: 94vh;
+}
+.centre-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
 }
